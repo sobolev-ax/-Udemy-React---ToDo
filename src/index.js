@@ -6,14 +6,18 @@ const Header = () => {
 }
 
 const Search = () => {
-  return <input type="text" placeholder="search" />;
+  const holder = 'Type here to search';
+
+  return <input type="text" placeholder={holder} />;
 }
 
 const List = () => {
+  const todo = ['Do exercises','Drink coffee'];
+
   return (
     <ul>
-      <li>Do exercises</li>
-      <li>Drink coffee</li>
+      <li>{ todo[0] }</li>
+      <li>{ todo[1] }</li>
     </ul>
   );
 }
