@@ -5,8 +5,9 @@ import Item from './item';
 const List = () => {
   return (
     <ul>
-      <li><Item /></li>
-      <li><Item /></li>
+      <li><Item label="Do sport" important /></li>
+      <li><Item label="Drink coffee" /></li>
+      <li><Item label="Read book" /></li>
     </ul>
   );
 }
