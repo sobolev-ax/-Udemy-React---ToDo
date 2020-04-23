@@ -7,16 +7,16 @@ import List from './components/list';
 
 const App = () => {
   const todos = [
-    { label: "Do sport", important: true, },
-    { label: "Drink coffee", important: false, },
-    { label: "Read book", important: false, },
+    { label: "Do sport", important: true, id: 1, },
+    { label: "Drink coffee", important: false, id: 2, },
+    { label: "Read book", important: false, id: 3, },
   ];
 
   return (
     <main>
       <Header />
       <Search />
-      <List items={ todos } />
+      <List data={ todos } />
     </main>
   );
 }
