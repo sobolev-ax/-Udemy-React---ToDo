@@ -2,12 +2,14 @@ import React from 'react';
 
 import Item from './item';
 
-const List = () => {
+const List = ({ items }) => {
+  const elements = items.map((item) => {
+    return <li><Item {...item} /></li>
+  });
+
   return (
     <ul>
-      <li><Item label="Do sport" important /></li>
-      <li><Item label="Drink coffee" /></li>
-      <li><Item label="Read book" /></li>
+      { elements }
     </ul>
   );
 }
