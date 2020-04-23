@@ -1,0 +1,9 @@
+.c-list-group-item {
+  padding: .35rem .9rem;
+}
+
+.c-list-group-item:hover,
+.c-list-group-item:focus {
+  padding: .35rem .9rem;
+  background: var(--li-hover-color);
+}

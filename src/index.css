@@ -1,0 +1,15 @@
+body {
+  cursor: default;
+}
+
+body {
+  --sky-blue-color: rgba(0, 26, 255, 0.1);
+}
+
+body {
+  --li-hover-color: var(--sky-blue-color);
+}
+
+.c-btn {
+  background: white;
+}

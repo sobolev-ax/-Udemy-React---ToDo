@@ -5,6 +5,8 @@ import Header from './components/header';
 import Search from './components/search';
 import List from './components/list';
 
+import './index.css';
+
 const App = () => {
   const todos = [
     { label: "Do sport", important: true, id: 1, },
@@ -13,11 +15,17 @@ const App = () => {
   ];
 
   return (
-    <main>
-      <Header />
-      <Search />
-      <List data={ todos } />
-    </main>
+    <div className="container">
+      <div className="row justify-content-center">
+          <div className="col-xl-6">
+
+            <Header />
+            <Search />
+            <List data={ todos } />
+
+          </div>
+      </div>
+    </div>
   );
 }
 
