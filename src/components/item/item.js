@@ -11,14 +11,18 @@ export default class Item extends Component {
   }
 
   onLabelClick = () => {
-    this.setState({
-      done: !this.state.done,
+    this.setState(({ done }) => {
+      return {
+        done: !done,
+      }
     });
   }
 
   onImportantClick = () => {
-    this.setState({
-      important: !this.state.important,
+    this.setState(({ important }) => {
+      return {
+        important: !important,
+      }
     });
   }
 
