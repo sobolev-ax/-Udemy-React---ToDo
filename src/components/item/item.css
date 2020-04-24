@@ -1,3 +1,7 @@
 .c-item-label {
   cursor: pointer;
 }
+
+.c-item-label-done {
+  text-decoration: line-through;
+}

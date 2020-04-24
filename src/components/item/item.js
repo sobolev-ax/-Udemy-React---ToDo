@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import './item.css';
 
 export default class Item extends Component {
 
+  state = {
+    done: false,
+  }
+
   onLabelClick = () => {
-    console.log(`Done: ${this.props.label}`);
+    this.setState({
+      done: !this.state.done,
+    });
   }
 
   render() {
 
     const { label, important = false } = this.props;
+    const { done } = this.state;
 
-    const isImportant = important ? 'text-danger' : '';
+    const labelClasses = classNames(
+      'c-item-label',
+      {
+        'text-danger': important,
+        'c-item-label-done': done,
+      }
+    );
 
     return (
       <span className="d-flex justify-content-between">
-        <span className={`c-item-label ${isImportant}`}
+        <span className={ labelClasses }
           onClick={ this.onLabelClick }>
           { label }
         </span>
