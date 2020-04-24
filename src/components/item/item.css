@@ -5,3 +5,8 @@
 .c-item-label-done {
   text-decoration: line-through;
 }
+
+.c-item-label-important {
+  font-weight: bold;
+  color: tomato;
+}
