@@ -40,7 +40,7 @@ export default class Item extends Component {
     );
 
     return (
-      <span className="d-flex justify-content-between">
+      <span className="d-flex align-items-center justify-content-between">
         <span className={ labelClasses }
           onClick={ this.onLabelClick }>
           { label }
