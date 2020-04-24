@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from '../header';
 import Search from '../search';
 import List from '../list';
+import Control from '../control';
 
 import './app.css';
 
@@ -22,6 +23,19 @@ export default class App extends Component {
     }))
   }
 
+  addItem = (label) => {
+    this.setState(({ todoData }) => ({
+      todoData: [
+        ...todoData,
+        {
+          label,
+          important: false,
+          id: todoData[todoData.length - 1].id + 1
+        }
+      ]
+    }));
+  }
+
   render() {
     const { todoData } = this.state;
 
@@ -33,6 +47,7 @@ export default class App extends Component {
               <Header />
               <Search />
               <List data={ todoData } onDeleted={ this.deleteItem } />
+              <Control onAdded={ this.addItem } />
   
             </div>
         </div>
