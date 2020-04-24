@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import './item.css';
 
 export default class Item extends Component {
+
+  onLabelClick = () => {
+    console.log(`Done: ${this.props.label}`);
+  }
+
   render() {
 
     const { label, important = false } = this.props;
@@ -11,7 +16,8 @@ export default class Item extends Component {
 
     return (
       <span className="d-flex justify-content-between">
-        <span className={`c-item-label ${isImportant}`}>
+        <span className={`c-item-label ${isImportant}`}
+          onClick={ this.onLabelClick }>
           { label }
         </span>
 
