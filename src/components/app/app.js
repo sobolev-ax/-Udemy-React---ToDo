@@ -20,7 +20,7 @@ const App = () => {
 
             <Header />
             <Search />
-            <List data={ todoData } />
+            <List data={ todoData } onDeleted={(id) => console.log('del', id)} />
 
           </div>
       </div>

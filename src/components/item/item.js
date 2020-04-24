@@ -28,7 +28,7 @@ export default class Item extends Component {
 
   render() {
 
-    const { label } = this.props;
+    const { label, onDeleted } = this.props;
     const { done, important } = this.state;
 
     const labelClasses = classNames(
@@ -47,7 +47,9 @@ export default class Item extends Component {
         </span>
 
         <span>
-          <button className="btn c-btn btn-sm btn-outline-danger mr-1" type="button">
+          <button className="btn c-btn btn-sm btn-outline-danger mr-1"
+            type="button"
+            onClick={ onDeleted }>
             Delete
           </button>
           <button className="btn c-btn btn-sm btn-outline-primary"
