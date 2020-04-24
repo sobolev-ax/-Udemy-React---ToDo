@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filter from './filter';
+import Filter from '../filter';
 
 import './search.css';
 
