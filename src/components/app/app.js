@@ -9,11 +9,33 @@ import './app.css';
 
 export default class App extends Component {
 
+  itemId = 0;
+
+  createItem = (label) => {
+    return {
+      label,
+      important: false,
+      done: false,
+      id: this.itemId++,
+    }
+  }
+
+  toggleItem = (data, id, property) => {
+    return data.map((item) => {
+      const value = item.id === id ? !item[property] : item[property];
+
+      return {
+        ...item,
+        [property]: value
+      }
+    });
+  }
+
   state = {
     todoData: [
-      { label: "Do sport", important: true, id: 1, },
-      { label: "Drink coffee", important: false, id: 2, },
-      { label: "Read book", important: false, id: 3, },
+      this.createItem('Do sport'),
+      this.createItem('Drink coffee'),
+      this.createItem('Read book'),
     ],
   }
 
@@ -27,26 +49,40 @@ export default class App extends Component {
     this.setState(({ todoData }) => ({
       todoData: [
         ...todoData,
-        {
-          label,
-          important: false,
-          id: todoData[todoData.length - 1].id + 1
-        }
+        this.createItem(label),
       ]
     }));
   }
 
+  doneItem = (id) => {
+    this.setState(({ todoData }) => ({
+      todoData: this.toggleItem(todoData, id, 'done')
+    }))
+  }
+
+  importantItem = (id) => {
+    this.setState(({ todoData }) => ({
+      todoData: this.toggleItem(todoData, id, 'important')
+    }))
+  }
+
   render() {
     const { todoData } = this.state;
+
+    const done = todoData.filter(item => item.done).length;
+    const left = todoData.length - done;
 
     return (
       <div className="container">
         <div className="row justify-content-center">
             <div className="col-xl-6">
   
-              <Header />
+              <Header done={done} left={left} />
               <Search />
-              <List data={ todoData } onDeleted={ this.deleteItem } />
+              <List data={ todoData }
+                onDeleted={ this.deleteItem }
+                onDone={ this.doneItem }
+                onImportant={ this.importantItem } />
               <Control onAdded={ this.addItem } />
   
             </div>

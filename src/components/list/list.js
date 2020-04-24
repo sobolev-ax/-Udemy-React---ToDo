@@ -4,14 +4,18 @@ import Item from '../item';
 
 import './list.css';
 
-const List = ({ data, onDeleted }) => {
+const List = ({ data, onDeleted, onDone, onImportant }) => {
   const items = data.map((item) => {
 
     const { id, ...itemProps} = item;
 
     return (
       <li key={id} className="c-list-group-item list-group-item">
-        <Item {...itemProps} onDeleted={ () => onDeleted(id) } />
+        <Item
+          {...itemProps}
+          onDeleted={ () => onDeleted(id) }
+          onDone={ () => onDone(id) }
+          onImportant={ () => onImportant(id) } />
       </li>
     );
   });
