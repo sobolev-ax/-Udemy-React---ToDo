@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Control extends Component {
 
   state = {
-    label: '111'
+    label: ''
   }
 
   change = (e) => {
