@@ -43,6 +43,7 @@ export default class Control extends Component {
             value={ label } />
           <div className="input-group-append">
             <button type="submit"
+              disabled={!label}
               className="btn btn-primary">
               Add item
             </button>
