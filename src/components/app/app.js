@@ -32,11 +32,26 @@ export default class App extends Component {
   }
 
   state = {
+    search: '',
     todoData: [
       this.createItem('Do sport'),
       this.createItem('Drink coffee'),
       this.createItem('Read book'),
     ],
+  }
+
+  getData = () => {
+    const { search, todoData } = this.state;
+
+    return todoData.filter((item) => {
+      return search === '' || item.label.toLowerCase().includes(search.toLowerCase())
+    })
+  }
+
+  searchItem = (search) => {
+    this.setState({
+      search
+    })
   }
 
   deleteItem = (id) => {
@@ -78,8 +93,8 @@ export default class App extends Component {
             <div className="col-xl-6">
   
               <Header done={done} left={left} />
-              <Search />
-              <List data={ todoData }
+              <Search onSearch={ this.searchItem } />
+              <List data={ this.getData() }
                 onDeleted={ this.deleteItem }
                 onDone={ this.doneItem }
                 onImportant={ this.importantItem } />
