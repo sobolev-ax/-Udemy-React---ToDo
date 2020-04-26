@@ -4,7 +4,7 @@ import Filter from '../filter';
 
 import './search.css';
 
-const Search = ({ onSearch, search }) => {
+const Search = ({ onSearch, onFilter, search, filters }) => {
   const holder = 'Type here to search';
 
   return (
@@ -15,7 +15,7 @@ const Search = ({ onSearch, search }) => {
         placeholder={ holder }
         className="form-control mr-1" />
 
-      <Filter />
+      <Filter filters={ filters } onFilter={ onFilter } />
     </section>
   );
 }

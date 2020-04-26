@@ -20,6 +20,14 @@ export default class App extends Component {
     }
   }
 
+  createFilter = (label, active = false) => {
+    return {
+      label,
+      active,
+      id: this.itemId++,
+    }
+  }
+
   toggleItem = (data, id, property) => {
     return data.map((item) => {
       const value = item.id === id ? !item[property] : item[property];
@@ -33,6 +41,11 @@ export default class App extends Component {
 
   state = {
     search: '',
+    filters: [
+      this.createFilter('All', true),
+      this.createFilter('Active'),
+      this.createFilter('Done'),
+    ],
     todoData: [
       this.createItem('Do sport'),
       this.createItem('Drink coffee'),
@@ -41,11 +54,38 @@ export default class App extends Component {
   }
 
   getData = () => {
-    const { search, todoData } = this.state;
+    const { search, todoData, filters } = this.state;
+    const filter = filters.find((filter) => filter.active).label;
+
+    const isSearch = (search, item) => search === '' || item.label.toLowerCase().includes(search.toLowerCase());
+
+    const isFilter = (filter, item) => {
+      if (filter === 'All')
+        return true;
+      
+      if (filter === 'Done')
+        return item.done
+
+      if (filter === 'Active')
+        return !item.done
+    }
 
     return todoData.filter((item) => {
-      return search === '' || item.label.toLowerCase().includes(search.toLowerCase())
+      return isSearch(search, item) && isFilter(filter, item)
     })
+  }
+
+  filterItem = (id) => {
+    this.setState(({ filters }) => {
+      return {
+        filters: filters.map((filter) => {
+          return {
+            ...filter,
+            active: id === filter.id
+          }
+        })
+      }
+    });
   }
 
   searchItem = (search) => {
@@ -82,7 +122,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { todoData, search } = this.state;
+    const { todoData, search, filters } = this.state;
 
     const done = todoData.filter(item => item.done).length;
     const left = todoData.length - done;
@@ -93,7 +133,10 @@ export default class App extends Component {
             <div className="col-xl-6">
   
               <Header done={done} left={left} />
-              <Search search={ search } onSearch={ this.searchItem } />
+              <Search search={ search }
+                onSearch={ this.searchItem }
+                filters={ filters }
+                onFilter={ this.filterItem } />
               <List data={ this.getData() }
                 onDeleted={ this.deleteItem }
                 onDone={ this.doneItem }

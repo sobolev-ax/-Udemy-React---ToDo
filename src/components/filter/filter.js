@@ -1,15 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import classNames from 'classnames';
 
 import './filter.css';
 
-export default class Filter extends Component {
-  render() {
+const Filter = ({ filters, onFilter }) => {
+
     return (
       <div className="btn-group">
-        <button type="button" className="btn btn-outline-info active">Left</button>
-        <button type="button" className="btn btn-outline-info">Middle</button>
-        <button type="button" className="btn btn-outline-info">Right</button>
+        {
+          filters.map(({ label, id, active }) => {
+
+            const btnClasses = classNames(
+              'btn',
+              'btn-outline-info',
+              {
+                'active': active
+              }
+            );
+
+            return (
+              <button type="button"
+                onClick={ () => onFilter(id) }
+                key={ id }
+                className={ btnClasses }>
+                { label }
+              </button>
+            )
+          })
+        }
       </div>
     );
-  }
 }
+
+export default Filter;
