@@ -82,7 +82,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { todoData } = this.state;
+    const { todoData, search } = this.state;
 
     const done = todoData.filter(item => item.done).length;
     const left = todoData.length - done;
@@ -93,7 +93,7 @@ export default class App extends Component {
             <div className="col-xl-6">
   
               <Header done={done} left={left} />
-              <Search onSearch={ this.searchItem } />
+              <Search search={ search } onSearch={ this.searchItem } />
               <List data={ this.getData() }
                 onDeleted={ this.deleteItem }
                 onDone={ this.doneItem }
